@@ -5,6 +5,7 @@ def TestTenant (data)
   p "Tenant/////Tenant"
 end
 
+#Global Functions
 # Get Credit Rating Score
 def rate_credit credit_score
   case credit_score

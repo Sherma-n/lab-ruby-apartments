@@ -1,12 +1,12 @@
+# Require Files
+require "./Tenant"
+
 # Apartment Test
 def TestApartment (data)
   p "Apartment/////Apartment"
   p (data)
   p "Apartment/////Apartment"
 end
-
-# Require Files
-require ("./Tenant")
 
 #Apartment Class
 class Apartment
@@ -29,7 +29,7 @@ class Apartment
   end # Initializa End
 
   # Adding tenant Method
-  def add_tenant(tenant)
+  def add_tenant tenant
 
     # Tenant Validation
     if tenant.credit_rating == "Bad"
@@ -44,7 +44,7 @@ class Apartment
   end # Add Tenant End
 
   # Removing a Tenant
-  def remove_tenant (tenant)
+  def remove_tenant tenant
 
     # Checking if Tenant exsists & Removing a Tenant
     @apt_tenants.each do |i|
@@ -65,11 +65,13 @@ class Apartment
 
   #calculating average credit rating
   def average_credit_score
+
+    #Validation
     if @apt_tenants.size <= 0
       p "No Tenants!"
     else
       #Isolating credit Scores
-      every_credit = Apartment1.apt_tenants.map { |i| i.credit_score  }
+      every_credit = self.apt_tenants.map { |i| i.credit_score  }
 
       #Summing total, then dividing by arr size
       average_credit = every_credit.reduce(:+) / every_credit.size
@@ -81,36 +83,43 @@ class Apartment
 
   #apartment credit rating
   def apartment_credit_rating
+
+    #Run Rate Credit
     therating = rate_credit @apt_avg_c
+
+    #Pass results to model
     @apt_c_rating = therating
-  end
+
+  end # Apartment Credit Rating End
 
 
 end #Class Apartment Ends
 
 # # Testing Objects
-# Apartment1 = Apartment.new "1", 500, 10000, 10, 15
-# #Creating new Tenants
-# Sherman = Tenant.new 'Sherman', '28', 730
-# A       = Tenant.new 'A', '28', 720
-# B       = Tenant.new 'B', '28', 710
-# C       = Tenant.new 'C', '28', 700
-# Apartment1.add_tenant(Sherman)
-# Apartment1.add_tenant(A)
-# Apartment1.add_tenant(B)
-# Apartment1.add_tenant(C)
+Apartment1 = Apartment.new "1", 500, 10000, 10, 15
+Apartment2 = Apartment.new "2", 1000, 2000, 2, 1
+Apartment3 = Apartment.new "3", 1000, 2000, 2, 1
+#Creating new Tenants
+Sherman = Tenant.new 'Sherman', '28', 730
+A       = Tenant.new 'A', '28', 720
+B       = Tenant.new 'B', '28', 710
+C       = Tenant.new 'C', '28', 700
+Apartment1.add_tenant(Sherman)
+Apartment1.add_tenant(A)
+Apartment2.add_tenant(B)
+Apartment2.add_tenant(C)
 
 # # Remove Tenant Test
 # Apartment1.remove_tenant(Sherman)
 # TestApartment(Apartment1.apt_tenants.map { |e| e.name  })
 
-# # Remove All Tenant Test
+# Remove All Tenant Test
 # Apartment1.remove_all_tenants()
 # TestApartment(Apartment1.apt_tenants.map { |e| e.name  })
 
-# #Average credit test
-# Apartment1.average_credit_score()
+#Average credit test
+Apartment1.average_credit_score()
 # TestApartment(Apartment1.apt_avg_c)
-# #Rating
-# Apartment1.apartment_credit_rating()
+#Rating
+Apartment1.apartment_credit_rating()
 # p (Apartment1.apt_c_rating)
